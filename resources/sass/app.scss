@@ -1,0 +1,19 @@
+// Fonts
+//noinspection CssUnknownTarget
+@import url('https://fonts.bunny.net/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import 'bootstrap/scss/bootstrap';
+
+input:-webkit-autofill{
+  -webkit-box-shadow: 0 0 0 1000px #1b1b1b inset !important;
+  -webkit-text-fill-color: white !important;
+}
+
+input{
+  background: #1b1b1b !important;
+}
+
