@@ -2,12 +2,11 @@
 @section('content')
     <div class="container shadow-sm p-3 bg-dark">
         <div class="accordion accordion-borderless" id="accordionFlushExampleX">
-            <div class="accordion-item" style="background-color: #1b1b1b">
+            <div class="accordion-item bg-darker">
                 <h2 class="accordion-header" id="flush-headingOneX">
-                    <button class="accordion-button text-white collapsed" type="button" data-mdb-toggle="collapse"
+                    <button class="accordion-button text-white collapsed bg-darker" type="button" data-mdb-toggle="collapse"
                             data-mdb-target="#flush-collapseOneX" aria-expanded="false"
                             aria-controls="flush-collapseOneX"
-                            style="background-color: #1b1b1b"
                     >
                         <i class="bi bi-plus-circle me-2"></i>
                         Aggiungi
@@ -29,9 +28,32 @@
             </div>
         </div>
         <hr class="hr">
-        @foreach($customers->reverse() as $customer)
-            <x-customer-card :customer="$customer"></x-customer-card>
-        @endforeach
-    </div>
+        <button class="btn btn-dark me-2 bg-darker mb-2" onclick="sortBy('desc')"><i class="bi bi-arrow-down"></i></button>
+        <button class="btn btn-dark bg-darker mb-2" onclick="sortBy('asc')"><i class="bi bi-arrow-up"></i></button>
+        <div id="customer-cards-container">
+            @foreach($customers->reverse() as $customer)
+                <x-customer-card :customer="$customer"></x-customer-card>
+            @endforeach
+        </div>
 
+    </div>
+    <script>
+        function sortBy(method = 'desc'){
+            let customers = $('.customer-card')
+            if (method === 'desc'){
+                customers.sort((a,b)=>{
+                    return parseInt($(b).find('.debit').text()) - parseInt($(a).find('.debit').text())
+                }).appendTo($('#customer-cards-container'))
+            }
+            else if (method === 'asc'){
+                customers.sort((a,b)=>{
+                    return parseInt($(a).find('.debit').text()) - parseInt($(b).find('.debit').text())
+                }).appendTo($('#customer-cards-container'))
+            }
+            else console.log(`Sort method not allowed [${method}]`)
+        }
+        $(()=>{
+            sortBy('desc')
+        })
+    </script>
 @endsection

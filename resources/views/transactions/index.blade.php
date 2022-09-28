@@ -8,12 +8,11 @@
         <div class="accordion accordion-borderless" id="accordionFlushExampleX">
 
 
-            <div class="accordion-item" style="background-color: #1b1b1b">
+            <div class="accordion-item bg-darker">
                 <h2 class="accordion-header" id="flush-headingOneX">
-                    <button class="accordion-button text-white collapsed" type="button" data-mdb-toggle="collapse"
+                    <button class="accordion-button text-white collapsed bg-darker" type="button" data-mdb-toggle="collapse"
                             data-mdb-target="#flush-collapseOneX" aria-expanded="false"
                             aria-controls="flush-collapseOneX"
-                            style="background-color: #1b1b1b"
                     >
                         <i class="bi bi-sliders me-2"></i>
                         Filtri
@@ -72,12 +71,11 @@
 
 
 
-            <div class="accordion-item" style="background-color: #1b1b1b">
+            <div class="accordion-item bg-darker">
                 <h2 class="accordion-header" id="flush-headingTwoX">
-                    <button class="accordion-button text-white collapsed" type="button" data-mdb-toggle="collapse"
+                    <button class="accordion-button text-white collapsed bg-darker" type="button" data-mdb-toggle="collapse"
                             data-mdb-target="#flush-collapseTwoX" aria-expanded="false"
                             aria-controls="flush-collapseTwoX"
-                            style="background-color: #1b1b1b"
                     >
                         <i class="bi bi-plus-circle me-2"></i>
                         Aggiungi
@@ -159,7 +157,7 @@
                     <div class="card bg-dark">
                         <ul class="list-group">
                             @foreach($transactions->reverse() as $transaction)
-                                <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b"
+                                <li class="list-group-item p-3 text-white bg-darker"
                                     onclick='window.location.href = `{{ route('transactions.show',$transaction->id) }}`'>
                                     <x-transaction-card :transaction="$transaction" :islist="true"></x-transaction-card>
                                 </li>

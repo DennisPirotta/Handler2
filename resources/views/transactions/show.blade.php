@@ -19,29 +19,29 @@
         </h6>
         <h3 class="text-white mb-3">{{$transaction->type === 0 ? '+' : '-'}} {{ $transaction->price }} <i
                     class="bi bi-currency-euro"></i></h3>
-        <div class="card" style="background-color: #1b1b1b">
+        <div class="card bg-darker">
             <ul class="list-group">
-                <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b">
+                <li class="list-group-item p-3 text-white bg-darker">
                     <span class="text-secondary">Data</span>
                     <span class="float-end">{{ Carbon::parse($transaction->date)->translatedFormat('d F Y, H:i') }}</span>
                 </li>
-                <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b">
+                <li class="list-group-item p-3 text-white bg-darker">
                     <span class="text-secondary">Stato</span>
                     <span class="float-end">{{ $transaction->payed === 1 ? 'Pagata' : 'Non Pagata' }}</span>
                 </li>
-                <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b">
+                <li class="list-group-item p-3 text-white bg-darker">
                     <span class="text-secondary">Note</span>
                     <span class="float-end">{{ $transaction->note ?? '//'}}</span>
                 </li>
             </ul>
         </div>
         <div class="d-flex">
-            <button class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b"><i class="bi bi-pen fs-4"></i></button>
+            <button class="btn btn-black mt-4 rounded-5 text-white bg-darker"><i class="bi bi-pen fs-4"></i></button>
             @if(!$transaction->payed)
                 <form class="ms-2" action="{{ route('transactions.payed',$transaction->id) }}" method="post">
                     @csrf
                     @method('PUT')
-                    <button type="submit" class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b" onclick="return confirm('La transazione è stata pagata?')"><i class="bi bi-check2-all fs-4"></i></button>
+                    <button type="submit" class="btn btn-black mt-4 rounded-5 text-white bg-darker" onclick="return confirm('La transazione è stata pagata?')"><i class="bi bi-check2-all fs-4"></i></button>
                 </form>
             @endif
         </div>

@@ -29,10 +29,10 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                                  alt="avatar 1" style="width: 45px; height: 100%;">
                             <div>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white" style="background-color: #1b1b1b;">Hi</p>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white" style="background-color: #1b1b1b;">How are you
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">Hi</p>
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">How are you
                                     ...???</p>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white" style="background-color: #1b1b1b;">What are you
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">What are you
                                     doing
                                     tomorrow? Can we come up a bar?</p>
                                 <p class="small ms-3 mb-3 rounded-3 text-muted">23:58</p>

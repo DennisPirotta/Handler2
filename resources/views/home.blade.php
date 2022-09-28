@@ -1,9 +1,9 @@
 @extends('layouts.app')
 @section('content')
     {{-- <x-toast :message="'Hello world! This is a toast message.'" :icon="'fa-info-circle'"></x-toast> --}}
-    <div class="container shadow-sm p-3 bg-dark">
+    <div class="container p-3 bg-dark">
         <h6 class="mt-1 mb-2 text-opacity-25 text-white">Disponibilità</h6>
-        <div class="card text-white" style="background-color: #1b1b1b">
+        <div class="card text-white bg-darker">
             <div class="card-body row">
                 <div class="col-8 d-flex align-items-center">
                     <span class="m-0 h2" id="cash">{{ $cash }}</span>
@@ -17,14 +17,14 @@
             </div>
         </div>
         <h6 class="mt-4 mb-2 text-opacity-25 text-white">Movimenti</h6>
-        <div class="card" style="background-color: #1b1b1b">
+        <div class="card bg-darker">
             <ul class="list-group">
                 @foreach($latest as $transaction)
-                    <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b">
+                    <li class="list-group-item p-3 text-white bg-darker">
                         <x-transaction-card :transaction="$transaction" :islist="true"></x-transaction-card>
                     </li>
                 @endforeach
-                <li class="list-group-item p-2 text-white text-center" style="background-color: #1b1b1b">
+                <li class="list-group-item p-2 text-white text-center bg-darker">
                     <a class="text-primary fw-bold" href="{{ route('transactions.index') }}">Vedi Tutti</a>
                 </li>
             </ul>
