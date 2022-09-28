@@ -27,9 +27,11 @@
                 </div>
             </div>
         </div>
-        <hr class="hr">
-        <button class="btn btn-dark me-2 bg-darker mb-2" onclick="sortBy('desc')"><i class="bi bi-arrow-down"></i></button>
-        <button class="btn btn-dark bg-darker mb-2" onclick="sortBy('asc')"><i class="bi bi-arrow-up"></i></button>
+        <div class="d-flex mt-3 mb-2 justify-content-center">
+            <button class="btn btn-dark me-3 bg-darker" onclick="sortBy('desc')"><i class="bi bi-arrow-down"></i></button>
+            <button class="btn btn-dark bg-darker" onclick="sortBy('asc')"><i class="bi bi-arrow-up"></i></button>
+        </div>
+
         <div id="customer-cards-container">
             @foreach($customers->reverse() as $customer)
                 <x-customer-card :customer="$customer"></x-customer-card>

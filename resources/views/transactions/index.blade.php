@@ -166,7 +166,9 @@
                     </div>
                 @else
                     @foreach($transactions as $transaction)
-                        <x-transaction-card :transaction="$transaction"></x-transaction-card>
+                        <div onclick="window.location.href = `{{ route('transactions.show',$transaction->id) }}`">
+                            <x-transaction-card :transaction="$transaction"></x-transaction-card>
+                        </div>
                     @endforeach
                 @endif
             @endforeach

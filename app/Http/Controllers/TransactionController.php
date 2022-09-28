@@ -82,9 +82,10 @@ class TransactionController extends Controller
         return back();
     }
 
-    public function destroy(Transaction $transaction){
+    public function destroy(Transaction $transaction)
+    {
         $transaction->delete();
-        return back();
+        return redirect('/transactions');
     }
 
 }

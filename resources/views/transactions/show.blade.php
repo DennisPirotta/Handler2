@@ -14,9 +14,9 @@
         </div>
     </div>
     <div class="container shadow-sm p-3 bg-dark">
-        <h6 class="mt-4 mb-3 text-opacity-25 text-white">
+        <h4 class="mt-4 mb-3 text-opacity-50 text-white">
             {{ $transaction->customer->name }}
-        </h6>
+        </h4>
         <h3 class="text-white mb-3">{{$transaction->type === 0 ? '+' : '-'}} {{ $transaction->price }} <i
                     class="bi bi-currency-euro"></i></h3>
         <div class="card bg-darker">
@@ -36,9 +36,15 @@
             </ul>
         </div>
         <div class="d-flex">
-            <button class="btn btn-black mt-4 rounded-5 text-white bg-darker"><i class="bi bi-pen fs-4"></i></button>
+            <button class="btn btn-black disabled mt-4 rounded-5 text-white bg-darker me-2"><i class="bi bi-pen fs-4"></i></button>
+            <form action="{{ route('transactions.destroy',$transaction->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <button type="submit" class="btn btn-black mt-4 rounded-5 text-white bg-darker me-2" onclick="return confirm('Eliminare la transazione?')"><i class="bi bi-trash fs-4"></i></button>
+            </form>
+
             @if(!$transaction->payed)
-                <form class="ms-2" action="{{ route('transactions.payed',$transaction->id) }}" method="post">
+                <form action="{{ route('transactions.payed',$transaction->id) }}" method="post">
                     @csrf
                     @method('PUT')
                     <button type="submit" class="btn btn-black mt-4 rounded-5 text-white bg-darker" onclick="return confirm('La transazione è stata pagata?')"><i class="bi bi-check2-all fs-4"></i></button>
