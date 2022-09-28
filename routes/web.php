@@ -39,6 +39,8 @@ Route::middleware('auth')->group(static function (){
 
     Route::post('/customers', [CustomerController::class,'store'])->name('customers.store');
 
+    Route::get('/customers/{customer}', [CustomerController::class,'show'])->name('customers.show');
+
     Route::get('/chat',[ChatController::class,'index'])->name('chat.index');
 
     Route::get('/profile',[UserController::class,'index'])->name('users.index');

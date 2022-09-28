@@ -8,7 +8,7 @@
         }
     }
 @endphp
-<div class="card text-white mb-2" style="background-color: #1b1b1b">
+<div class="card text-white mb-2" style="background-color: #1b1b1b" onclick='window.location.href = `{{ route('customers.show',$customer->id) }}`'>
     <div class="card-body d-flex">
         <div class="float-start">
             {{ $customer->name }}

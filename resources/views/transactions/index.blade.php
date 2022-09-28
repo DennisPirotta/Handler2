@@ -31,7 +31,7 @@
                                             <i class="fa fa-chevron-left"></i>
                                         </div>
                                         <input type="hidden" name="customer">
-                                        <ul class="dropdown-menu bg-dark text-white">
+                                        <ul class="dropdown-menu bg-dark text-white" id="customer-dropdown">
                                             @foreach($customers as $customer)
                                                 <li value="{{ $customer->id }}">{{ $customer->name }}</li>
                                             @endforeach
@@ -109,7 +109,7 @@
                                             <i class="fa fa-chevron-left"></i>
                                         </div>
                                         <input type="hidden" name="customer_id">
-                                        <ul id="customer-dropdown" class="dropdown-menu bg-dark text-white">
+                                        <ul id="new-customer-dropdown" class="dropdown-menu bg-dark text-white">
                                             @foreach($customers as $customer)
                                                 <li value="{{ $customer->id }}">{{ $customer->name }}</li>
                                             @endforeach
@@ -150,36 +150,45 @@
                 </div>
             </div>
         </div>
-        @foreach($transactionsByDate as $key => $transactions)
-            <h6 class="mt-4 mb-2 text-opacity-25 text-white">
-                {{ Carbon::parse($key)->translatedFormat('d F Y') }}
-            </h6>
-            @if($transactions->count() > 1)
-                <div class="card bg-dark">
-                    <ul class="list-group">
-                        @foreach($transactions as $transaction)
-                            <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b"
-                                onclick='window.location.href = `{{ route('transactions.show',$transaction->id) }}`'>
-                                <x-transaction-card :transaction="$transaction" :islist="true"></x-transaction-card>
-                            </li>
-                        @endforeach
-                    </ul>
-                </div>
-            @else
-                @foreach($transactions as $transaction)
-                    <a href="{{ route('transactions.show',$transaction->id) }}">
+        @if($transactionsByDate->count() > 0)
+            @foreach($transactionsByDate as $key => $transactions)
+                <h6 class="mt-4 mb-2 text-opacity-25 text-white">
+                    {{ Carbon::parse($key)->translatedFormat('d F Y') }}
+                </h6>
+                @if($transactions->count() > 1)
+                    <div class="card bg-dark">
+                        <ul class="list-group">
+                            @foreach($transactions->reverse() as $transaction)
+                                <li class="list-group-item p-3 text-white" style="background-color: #1b1b1b"
+                                    onclick='window.location.href = `{{ route('transactions.show',$transaction->id) }}`'>
+                                    <x-transaction-card :transaction="$transaction" :islist="true"></x-transaction-card>
+                                </li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @else
+                    @foreach($transactions as $transaction)
                         <x-transaction-card :transaction="$transaction"></x-transaction-card>
-                    </a>
-                @endforeach
-            @endif
-        @endforeach
+                    @endforeach
+                @endif
+            @endforeach
+        @else
+            <h6 class="mt-4 mb-2 text-opacity-25 text-white text-center">
+                Nessuna transazione trovata
+            </h6>
+        @endunless
     </div>
     <script>
 
-        $('#customer-dropdown').click(function (e) {
+        $('#customer-dropdown li').click(function (e) {
+            $('input[name=customer]').val($(e.target).val())
+        });
+
+        $('#new-customer-dropdown li').click(function (e) {
             $('input[name=customer_id]').val($(e.target).val())
         });
-        $('#type-dropdown').click(function (e) {
+
+        $('#type-dropdown li').click(function (e) {
             $('input[name=type]').val($(e.target).val())
         });
 

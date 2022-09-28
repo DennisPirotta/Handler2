@@ -5,7 +5,7 @@
     <div class="container bg-dark p-4 mb-2">
         <div class="row">
             <div class="col-2 d-flex justify-content-start">
-                <a href="javascript:history.go(-1)">
+                <a href="{{ route('transactions.index') }}">
                     <i class="bi bi-arrow-left text-white"></i>
                 </a>
             </div>
@@ -35,10 +35,16 @@
                 </li>
             </ul>
         </div>
-        <button class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b"><i class="bi bi-pen fs-4"></i></button>
-        @if(!$transaction->payed)
-            <button class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b"><i class="bi bi-check2-all fs-4"></i></button>
-        @endif
+        <div class="d-flex">
+            <button class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b"><i class="bi bi-pen fs-4"></i></button>
+            @if(!$transaction->payed)
+                <form class="ms-2" action="{{ route('transactions.payed',$transaction->id) }}" method="post">
+                    @csrf
+                    @method('PUT')
+                    <button type="submit" class="btn btn-black mt-4 rounded-5 text-white" style="background-color: #1b1b1b" onclick="return confirm('La transazione è stata pagata?')"><i class="bi bi-check2-all fs-4"></i></button>
+                </form>
+            @endif
+        </div>
     </div>
 @endsection
 

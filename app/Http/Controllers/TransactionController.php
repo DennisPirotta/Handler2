@@ -21,7 +21,6 @@ class TransactionController extends Controller
         $sorted = $transactions->groupBy(function($item){ return Carbon::parse($item->date)->format('d-M-Y'); })->sortKeysUsing(static function ($a,$b){
             $ta = Carbon::parse($a)->timestamp;
             $tb = Carbon::parse($b)->timestamp;
-
             return $tb - $ta;
         });
         return view('transactions.index',[
