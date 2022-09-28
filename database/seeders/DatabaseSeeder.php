@@ -25,8 +25,8 @@ class DatabaseSeeder extends Seeder
             'email' => 'dennispirotta@gmail.com',
             'password' => Hash::make('pellio2014')
         ]);
-        Customer::factory(10)->create();
-        Message::factory(20)->create();
-        Transaction::factory(100)->create();
+        //Customer::factory(10)->create();
+        //Message::factory(20)->create();
+        //Transaction::factory(100)->create();
     }
 }

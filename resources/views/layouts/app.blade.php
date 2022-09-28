@@ -22,9 +22,58 @@
     <!-- JQuery -->
     <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <!-- PWA  -->
-    <meta name="theme-color" content="#6777ef"/>
+    <meta name="theme-color" content="#212529"/>
     <link rel="apple-touch-icon" href="{{ asset('logo.PNG') }}">
     <link rel="manifest" href="{{ asset('/manifest.json') }}">
+
+    <!-- Must -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="description" content="Handler">
+    <meta name="keywords" content="Handler">
+
+    <!-- Android  -->
+    <meta name="theme-color" content="#212529">
+    <meta name="mobile-web-app-capable" content="yes">
+
+    <!-- iOS -->
+    <meta name="apple-mobile-web-app-title" content="Handler">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+
+    <!-- Windows  -->
+    <meta name="msapplication-navbutton-color" content="#212529">
+    <meta name="msapplication-TileColor" content="white">
+    <meta name="msapplication-TileImage" content="{{ asset('images/app/weed.png') }}">
+    <meta name="msapplication-config" content="browserconfig.xml">
+
+    <!-- Pinned Sites  -->
+    <meta name="application-name" content="Handler">
+    <meta name="msapplication-tooltip" content="handler">
+    <meta name="msapplication-starturl" content="/">
+
+    <!-- Tap highlighting  -->
+    <meta name="msapplication-tap-highlight" content="no">
+
+    <!-- UC Mobile Browser  -->
+    <meta name="full-screen" content="yes">
+    <meta name="browsermode" content="application">
+
+    <!-- Disable night mode for this page  -->
+    <meta name="nightmode" content="enable/disable">
+
+    <!-- Fitscreen  -->
+    <meta name="viewport" content="uc-fitscreen=yes"/>
+
+    <!-- Layout mode -->
+    <meta name="layoutmode" content="fitscreen/standard">
+
+    <!-- imagemode - show image even in text only mode  -->
+    <meta name="imagemode" content="force">
+
+    <!-- Orientation  -->
+    <meta name="screen-orientation" content="portrait">
 </head>
 <body class="bg-dark bg-opacity-75" style="margin-bottom: 55px">
     @auth

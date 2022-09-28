@@ -3,7 +3,7 @@
     $debit = 0;
     $transactions = Transaction::where('customer_id',$customer->id)->where('user_id',auth()->id())->get();
     foreach ($transactions as $transaction) {
-        if ($transaction->payed){
+        if (!$transaction->payed){
             $debit += $transaction->price;
         }
     }
@@ -13,10 +13,10 @@
         <div class="float-start">
             {{ $customer->name }}
             <br>
-            <span class="text-secondary small">Debito di <span class="text-white fs-6">{{ $debit}} <i class="bi bi-currency-euro"></i></span></span>
+            <span class="text-secondary small">Debito di <span class="text-white fs-6">{{ $debit }} <i class="bi bi-currency-euro"></i></span></span>
         </div>
         <div class="ms-auto float-end align-self-center">
-            <a href="{{ route('transactions.index') }}?customer={{ $customer->id }}&&payed=1">
+            <a href="{{ route('transactions.index') }}?customer={{ $customer->id }}&&payed=0">
                 <i class="bi bi-eye fs-4 me-2 text-primary"></i>
             </a>
         </div>
