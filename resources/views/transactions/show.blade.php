@@ -5,7 +5,7 @@
     <div class="container bg-dark p-4 mb-2">
         <div class="row">
             <div class="col-2 d-flex justify-content-start">
-                <a href="{{ route('transactions.index') }}">
+                <a href="javascript:history.back()">
                     <i class="bi bi-arrow-left text-white"></i>
                 </a>
             </div>

@@ -65,6 +65,11 @@
                                        autocomplete="email">
                                 <label class="form-label" for="email" id="emailLabel">Email</label>
                             </div>
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
                             <button class="btn btn-outline-light btn-lg px-5" type="submit">{{ __('Send Password Reset Link') }}</button>
                         </form>
                     </div>

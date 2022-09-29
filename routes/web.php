@@ -5,7 +5,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
+use App\Mail\TestMail;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -19,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Auth::routes();
-Route::middleware('auth')->group(static function (){
+Route::middleware('auth')->group(callback: static function (){
 
     Route::get('/', [HomeController::class, 'index'])->name('home');
 
