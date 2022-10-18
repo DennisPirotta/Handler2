@@ -4,7 +4,7 @@
     <div class="container shadow-sm my-5 p-5">
         @foreach($users as $user)
             <!-- Buttons trigger collapse -->
-            <a class="btn btn-dark btn-lg btn-block mb-2" data-mdb-toggle="collapse" href="#collapseExample"
+            <a class="btn btn-dark btn-lg btn-block mb-2 bg-darker" data-mdb-toggle="collapse" href="#collapseExample"
                role="button" aria-expanded="false" aria-controls="collapseExample">
                 <div class="d-flex justify-content-between align-items-center">
                     <span>
@@ -21,7 +21,7 @@
 
             <!-- Collapsed content -->
             <div class="collapse mt-3" id="collapseExample">
-                <div class="card bg-dark" id="chat4">
+                <div class="card bg-darker" id="chat4">
                     <div class="card-body" data-mdb-perfect-scrollbar="true"
                          style="position: relative; height: 400px; overflow-y: scroll">
 
@@ -29,10 +29,10 @@
                             <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava5-bg.webp"
                                  alt="avatar 1" style="width: 45px; height: 100%;">
                             <div>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">Hi</p>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">How are you
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-dark">Hi</p>
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-dark">How are you
                                     ...???</p>
-                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-darker">What are you
+                                <p class="small p-2 ms-3 mb-1 rounded-3 text-white bg-dark">What are you
                                     doing
                                     tomorrow? Can we come up a bar?</p>
                                 <p class="small ms-3 mb-3 rounded-3 text-muted">23:58</p>
@@ -138,11 +138,38 @@
                                placeholder="Type message">
                         <a class="ms-1 text-muted" href="#!"><i class="fas fa-paperclip"></i></a>
                         <a class="ms-3 text-muted" href="#!"><i class="fas fa-smile"></i></a>
-                        <a class="ms-3 link-info" href="#!"><i class="fas fa-paper-plane"></i></a>
+                        <a class="ms-3 link-info" href="#!" onclick="sendMessage()"><i class="fas fa-paper-plane"></i></a>
                     </div>
                 </div>
             </div>
         @endforeach
     </div>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js" integrity="sha512-E8QSvWZ0eCLGk4km3hxSsNmGWbLtSCSUcewDQPQWZF6pEU8GlT8a5fF32wOl1i8ftdMhssTrF/OhyGWwonTcXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        async function sendMessage(){
+            let mess = $('#exampleFormControlInput3').val()
+            console.log(mess)
+            let encrypted = CryptoJS.AES.encrypt(mess,"C*F)J@NcRfUjXn2r")
+            console.log(encrypted.toString())
+            let request = await fetch('{{route('messages.store')}}',{
+                method: 'POST', // *GET, POST, PUT, DELETE, etc.
+                mode: 'cors', // no-cors, *cors, same-origin
+                cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+                credentials: 'same-origin', // include, *same-origin, omit
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    // 'Content-Type': 'application/x-www-form-urlencoded',
+                },
+                redirect: 'follow', // manual, *follow, error
+                referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+                body: JSON.stringify({
+                    "message" : `${encrypted.toString()}`
+                }) // body data type must match "Content-Type" header
+            })
+            let response = await request.json()
+            console.log(response.message)
+            console.log(CryptoJS.AES.decrypt(response.message,'C*F)J@NcRfUjXn2r').toString(CryptoJS.enc.Utf8))
+        }
+    </script>
 @endsection

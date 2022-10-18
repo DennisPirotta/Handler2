@@ -2,7 +2,13 @@
 @extends('layouts.app')
 @section('content')
     <div class="container p-5 bg-dark justify-content-center text-center">
-        <img class="mb-2" width="64" src="{{ asset('/images/icons/' . $user->avatar) }}" alt="Avatar">
+        <div class="d-flex justify-content-center">
+            <div class="my-3 bg-darker position-relative" style="width: 8rem;height: 8rem;border-radius: 4rem;cursor:pointer;" id="user-icon">
+                <img class="position-absolute top-50 start-50 translate-middle" width="64" src="{{ asset('/images/icons/' . $user->avatar) }}" alt="Avatar">
+                <i class="position-absolute top-50 start-50 translate-middle bi bi-pencil-fill display-4 text-black d-none"></i>
+            </div>
+        </div>
+
         <h2 class="text-white mb-4">{{ $user->name }}</h2>
         <div class="card text-start bg-darker mb-4">
             <ul class="list-group">
@@ -41,4 +47,15 @@
         <button class="btn btn-dark bg-darker w-100 mb-2 p-3" onclick="window.location.href = '{{ route('password.request') }}'"><i class="bi bi-key"></i> Cambia Password</button>
         <button class="btn btn-dark bg-darker w-100 mb-2 p-3"><i class="bi bi-key"></i> Modifica Account</button>
     </div>
+    <script>
+        $(()=>{
+            $('#user-icon').hover((e)=>{
+                $(e.target).find('img').css('filter','blur(2px)')
+                $(e.target).find('i').removeClass('d-none')
+            },(e) => {
+                $(e.target).find('img').css('filter','none')
+                $(e.target).find('i').addClass('d-none')
+            })
+        })
+    </script>
 @endsection

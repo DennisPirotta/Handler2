@@ -5,9 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\UserController;
-use App\Mail\TestMail;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -20,10 +18,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', [HomeController::class, 'welcome'])->name('welcome');
+
 Auth::routes();
 Route::middleware('auth')->group(callback: static function (){
 
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::get('/transactions', [TransactionController::class, 'index'])->name('transactions.index');
 
@@ -46,6 +47,8 @@ Route::middleware('auth')->group(callback: static function (){
     Route::get('/chat',[ChatController::class,'index'])->name('chat.index');
 
     Route::get('/profile',[UserController::class,'index'])->name('users.index');
+
+    Route::post('/messages',[ChatController::class,'store'])->name('messages.store');
 
 });
 

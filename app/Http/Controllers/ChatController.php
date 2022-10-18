@@ -14,4 +14,10 @@ class ChatController extends Controller
             'users' => User::all()
         ]);
     }
+
+    public function store(Request $request){
+        return [
+            "message" => $request->message
+        ];
+    }
 }
