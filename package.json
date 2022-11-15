@@ -16,6 +16,6 @@
         "vite-plugin-mkcert": "^1.10.1"
     },
     "dependencies": {
-        "@lottiefiles/lottie-player": "^1.5.7"
+        "@lottiefiles/lottie-player": "^1.6.0"
     }
 }
